@@ -1,5 +1,6 @@
 package com.sushant.repository;
 
+import com.sushant.entity.Guardian;
 import com.sushant.entity.Student;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -36,6 +37,25 @@ class StudentRepositoryTest {
 
     }
 
+    @Test
+    public void saveStudent(){
+        Guardian guardian = Guardian.builder()
+                .email("buildingguardianobject@gmail.com")
+                .mobNo("99988877744556")
+                .name("Demo")
+                .build();
+        Student student = Student.builder()
+                .emailId("ravikumar@gmail.com")
+                .firstName("Ravi")
+                .lastName("kumar")
+                .guardian(guardian)
+                .build();
+
+        Student save = studentRepository.save(student);
+        Assertions.assertEquals("Demo", student.getGuardian().getName());
+
+    }
+
 
     @Test
     public void getAllStudents(){
@@ -46,5 +66,28 @@ class StudentRepositoryTest {
 
 
 
+    @Test
+    public void getStudentsByFirstName(){
+
+        List<Student> allStudents = studentRepository.findByFirstName("Ravi");
+        Assertions.assertNotNull(allStudents);
+        System.out.println("Student details" + allStudents);
+    }
+
+    @Test
+    public void getStudentsByFirstNameContaining(){
+
+        List<Student> allStudents = studentRepository.findByFirstNameContaining("R");
+        Assertions.assertNotNull(allStudents);
+        System.out.println("Student details" + allStudents);
+    }
+
+
+    @Test
+    public void getStudentsByGuardianName(){
+
+        List<Student> demo = studentRepository.findByGuardianName("Demo");
+        System.out.println("Student details" + demo);
+    }
 
 }
