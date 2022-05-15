@@ -1,0 +1,37 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.7'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.sushant'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.7'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok:1.18.24'
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.7'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+	implementation 'org.junit:junit-bom:5.4.0-M1'
+	testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.8.2'
+}
+
+tasks.named('test') {
+	useJUnitPlatform {
+		includeEngines 'junit-jupiter', 'junit-vintage'
+	}
+}
