@@ -90,4 +90,43 @@ class StudentRepositoryTest {
         System.out.println("Student details" + demo);
     }
 
+    @Test
+    void  findByEmailId() {
+
+        List<Student> byEmailId = studentRepository.findByEmailId("sonukumar@gmail.com");
+        System.out.println("Data fetched" + byEmailId);
+        Assertions.assertNotNull(byEmailId);
+    }
+
+    @Test
+    void getStudentFirstNameByEmailId() {
+        String emailByFirstName = studentRepository.getStudentFirstNameByEmailId("sonukumar@gmail.com");
+        Assertions.assertNotNull(emailByFirstName);
+
+    }
+
+    @Test
+    void findByEmailIdNativeQuery() {
+
+        List<Student> byEmailId = studentRepository.findByEmailIdNativeQuery("sonukumar@gmail.com");
+        Assertions.assertNotNull(byEmailId);
+        System.out.println(byEmailId);
+    }
+
+    @Test
+    void findByEmailIdNativeQueryByNameParam() {
+
+        List<Student> byEmailId = studentRepository.findByEmailIdNativeQueryByNameParam("sonukumar@gmail.com");
+        Assertions.assertNotNull(byEmailId);
+        System.out.println(byEmailId);
+    }
+
+    @Test
+    void updateFirstNameByEmailId() {
+        int updateFirstNameByEmailId = studentRepository.updateFirstNameByEmailId("Chandan", "sonukumar@gmail.com");
+        Assertions.assertNotNull(updateFirstNameByEmailId);
+        System.out.println(updateFirstNameByEmailId);
+
+
+    }
 }
