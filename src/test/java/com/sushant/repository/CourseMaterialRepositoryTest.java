@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,6 +38,24 @@ class CourseMaterialRepositoryTest {
         CourseMaterial saveCourseDetails = courseMaterialRepository.save(courseMaterial);
         Assertions.assertNotNull(saveCourseDetails);
 
+
+    }
+
+
+    @Test
+    void testCourseMaterialLazyFetch(){
+
+        Optional<CourseMaterial> byCourseId = courseMaterialRepository.findByCourseId(1L);
+        Assertions.assertNotNull(byCourseId);
+        System.out.println("CourseMaterial for id" + byCourseId);
+
+    }
+
+    @Test
+    void testPrintAllCourseMaterials(){
+        List<CourseMaterial> courseMaterialList = courseMaterialRepository.findAll();
+        Assertions.assertNotNull(courseMaterialList);
+        System.out.println("CourseMaterial" + courseMaterialList);
 
     }
 
