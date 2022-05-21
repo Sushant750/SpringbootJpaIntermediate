@@ -27,11 +27,11 @@ class CourseMaterialRepositoryTest {
     void testCourseMaterialRepository(){
 
         Course course = Course.builder()
-                .title("BCA")
-                .credit(5)
+                .title("Algorithm")
+                .credit(8)
                 .build();
         CourseMaterial courseMaterial = CourseMaterial.builder()
-                .url("www.tutorialspoint.com")
+                .url("www.techreily.com")
                 .course(course)
                 .build();
 

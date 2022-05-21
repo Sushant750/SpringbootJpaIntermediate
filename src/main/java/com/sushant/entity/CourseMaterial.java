@@ -20,7 +20,8 @@ public class CourseMaterial {
     private Long courseMaterialId;
     private String url;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    //optional = false is added to make sure that every time a courseMaterial is saved it should contain course also.
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "course_id", referencedColumnName = "courseId")
     private Course course;
 }

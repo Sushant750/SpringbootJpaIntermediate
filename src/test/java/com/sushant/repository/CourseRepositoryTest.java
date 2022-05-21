@@ -1,6 +1,7 @@
 package com.sushant.repository;
 
 import com.sushant.entity.Course;
+import com.sushant.entity.Teacher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,25 @@ class CourseRepositoryTest {
         List<Course> courseList = courseRepository.findAll();
         Assertions.assertNotNull(courseList);
         System.out.println("Here is all the courses" + courseList);
+    }
+
+
+    @Test
+    void testTeacherSave(){
+
+        Teacher teacher = Teacher.builder()
+                .firstName("Neha")
+                .lastName("Singh")
+                .build();
+
+        Course course = Course.builder()
+                .title("C++")
+                .credit(4)
+                .teacher(teacher)
+                .build();
+
+        Course save = courseRepository.save(course);
+        Assertions.assertNotNull(save);
     }
 
 }
